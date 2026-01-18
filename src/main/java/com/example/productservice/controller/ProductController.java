@@ -3,6 +3,7 @@ package com.example.productservice.controller;
 import com.example.productservice.entity.Product;
 import com.example.productservice.service.ProductService;
 import org.springframework.web.bind.annotation.*;
+import java.util.concurrent.CompletableFuture;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAll() {
-        return service.getAll();
+    public CompletableFuture<List<Product>> getAll() {
+        return service.getAllAsync();
     }
 
     @GetMapping("/{id}")

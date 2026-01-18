@@ -5,6 +5,8 @@ import com.example.productservice.entity.Product;
 import com.example.productservice.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.scheduling.annotation.Async;
+import java.util.concurrent.CompletableFuture;
 
 import java.util.List;
 
@@ -33,8 +35,11 @@ public class ProductService {
         return saved;
     }
 
-    public List<Product> getAll() {
-        return repo.findAll();
+
+    @Async("productExecutor")
+    public CompletableFuture<List<Product>> getAllAsync() {
+        System.out.println("Thread: " + Thread.currentThread().getName());
+        return CompletableFuture.completedFuture(repo.findAll());
     }
 
     public Product getById(Long id) {
