@@ -1,19 +1,27 @@
 package com.example.productservice.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("products")
+@Table("PRODUCT")
 public class Product {
 
     @Id
     private Long id;
 
+    @Column("name")
     private String name;
-    private Long price;
+
+    @Column("price")
+    private Double price;
+
+    @Column("address")
     private String address;
 
-    // getters & setters
+    public Product() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,11 +38,11 @@ public class Product {
         this.name = name;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

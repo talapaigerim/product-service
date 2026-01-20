@@ -1,11 +1,7 @@
 package com.example.productservice.repository;
 
 import com.example.productservice.entity.Product;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import reactor.core.publisher.Flux;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
-public interface ProductRepository extends ReactiveCrudRepository<Product, Long> {
-
-    // опционально, если нужно
-    Flux<Product> findByName(String name);
+public interface ProductRepository extends R2dbcRepository<Product, Long> {
 }

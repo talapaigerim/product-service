@@ -19,22 +19,22 @@ public class ProductService {
         this.deliveryWebClient = deliveryWebClient;
     }
 
-    // ✅ GET ALL
+
     public Flux<Product> getAll() {
         return repo.findAll();
     }
 
-    // ✅ GET BY ID
+
     public Mono<Product> getById(Long id) {
         return repo.findById(id);
     }
 
-    // ✅ CREATE + неблокирующий вызов delivery-service
+    //  CREATE + неблокирующий вызов delivery-service
     public Mono<Product> create(Product product) {
         return repo.save(product)
                 .flatMap(savedProduct ->
                         deliveryWebClient.post()
-                                .uri("/delivery")
+                                .uri("/deliveries")
                                 .bodyValue(
                                         new DeliveryRequest(
                                                 savedProduct.getId(),
