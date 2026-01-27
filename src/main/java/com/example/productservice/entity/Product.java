@@ -10,13 +10,13 @@ public class Product {
     @Id
     private Long id;
 
-    @Column("name")
+    @Column("NAME")
     private String name;
 
-    @Column("price")
+    @Column("PRICE")
     private Double price;
 
-    @Column("address")
+    @Column("ADDRESS")
     private String address;
 
     public Product() {
